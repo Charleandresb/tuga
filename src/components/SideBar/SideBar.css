@@ -1,0 +1,120 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000000ed;
+  width: 182px;
+  height: 100vh;
+  position: fixed;
+  left: -100%;
+  z-index: 1;
+  box-shadow: 4px 8px 11px rgba(0, 0, 0, 0.2);
+  transition: all 2s ease-out;
+  backdrop-filter: blur(10px);
+  font-family: "Inter", sans-serif;
+}
+
+.sidebar_open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000000ed;
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  z-index: 2;
+  box-shadow: 4px 8px 11px rgba(0, 0, 0, 0.2);
+  transition: all 900ms ease-out;
+  backdrop-filter: blur(10px);
+  z-index: 3;
+}
+
+.sidebar__close-icon {
+  width: 15px;
+  position: absolute;
+  top: 3%;
+  left: 84%;
+  cursor: pointer;
+}
+
+.sidebar__search {
+  position: absolute;
+  top: 12%;
+  left: 0;
+}
+
+.sidebar__menu-container {
+  height: 340px;
+  overflow-x: hidden;
+  position: absolute;
+  top: 22%;
+  left: 13%;
+}
+
+.sidebar__menu {
+  display: grid;
+  align-content: center;
+  gap: 2rem;
+  padding: 0;
+  width: 184px;
+}
+
+.sidebar__list {
+  list-style: none;
+}
+
+.sidebar__list:has(:checked) {
+  --rows: 1fr;
+  --rotate: rotate(180deg);
+}
+
+.sidebar__link {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  border-bottom: groove;
+  border-color: #0000006b;
+}
+
+.sidebar__check {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sidebar__arrow {
+  transform: var(--rotate, 0);
+  transition: 0.3s transform;
+}
+
+.sidebar__content {
+  display: grid;
+  grid-template-rows: var(--rows, 0fr);
+  transition: 0.7s grid-template-rows;
+}
+
+.sidebar__submenu {
+  overflow: hidden;
+  list-style: none;
+  padding: 0 20px;
+}
+
+.sidebar__li {
+  margin: 1rem 0 0;
+}
+
+.sidebar__sublink {
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}

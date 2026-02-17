@@ -1,0 +1,31 @@
+.building {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.building__icon {
+  color: #b5b3b3;
+  width: 100%;
+  height: 100px;
+}
+
+.building__text {
+  color: #b5b3b3;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 900;
+  margin: 10px 0 0;
+}
+
+@media screen and (max-width: 425px) {
+  .building__icon {
+    width: 84px;
+  }
+
+  .building__text {
+    font-size: 25px;
+  }
+}

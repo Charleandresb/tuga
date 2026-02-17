@@ -1,0 +1,257 @@
+.product {
+  padding: 50px 0 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.product__grid {
+  display: grid;
+  grid-template-columns: 450px 450px;
+  grid-auto-rows: 82px 55px 11px 38px 20px 30px 50px;
+  grid-template-areas:
+    "image title"
+    "image description"
+    "image sku"
+    "image stock"
+    "image price"
+    "image sizes"
+    "image addButton";
+  gap: 25px 25px;
+  background-color: white;
+  border-radius: 12px;
+  transition: all 200ms ease-out;
+}
+
+.product__image-container {
+  grid-area: image;
+  width: 450px;
+  height: 450px;
+}
+
+.product__image {
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+}
+
+.product__title {
+  grid-area: title;
+  color: black;
+  font-size: 34px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.product__description {
+  grid-area: description;
+  color: black;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  max-width: 340px;
+}
+
+.product__sku {
+  grid-area: sku;
+  color: black;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.product__stock {
+  grid-area: stock;
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.product__price {
+  grid-area: price;
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.product__sizes {
+  grid-area: sizes;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.product__size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 3px;
+  border: rgb(168, 167, 167);
+  border-width: thin;
+  cursor: pointer;
+  border-style: solid;
+  transition: all 200ms ease-out;
+}
+
+.product__size:hover {
+  border-color: black;
+}
+
+.product__size-active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  border-style: solid;
+}
+
+.product__addButton {
+  grid-area: addButton;
+  color: white;
+  background-color: rgb(3, 119, 228);
+  border-radius: 3px;
+  border-style: none;
+  height: 50px;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+}
+
+.product__addButton:hover {
+  background-color: rgb(41, 151, 255);
+}
+
+@media screen and (max-width: 989px) {
+  .product {
+    padding: 50px 0 100px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .product__grid {
+    grid-template-columns: 369px 369px;
+    gap: 15px;
+  }
+
+  .product__image-container {
+    width: 369px;
+    height: 369px;
+  }
+
+  .product__image {
+    width: 369px;
+    height: 369px;
+  }
+
+  .product__title {
+    font-size: 30px;
+  }
+
+  .product__description {
+    font-size: 15px;
+  }
+
+  .product__sku {
+    font-size: 10px;
+  }
+
+  .product__stock {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .product__grid {
+    grid-template-columns: 300px 300px;
+  }
+
+  .product__image-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .product__image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .product__title {
+    font-size: 24px;
+  }
+
+  .product__description {
+    font-size: 14px;
+  }
+
+  .product__sku {
+    font-size: 8px;
+  }
+
+  .product__stock {
+    font-size: 12px;
+  }
+
+  .product__price {
+    font-size: 16px;
+  }
+
+  .product__addButton {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .product__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .product__image-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .product__image {
+    width: 320px;
+    height: 320px;
+  }
+
+  .product__title {
+    font-size: 19px;
+    text-align: center;
+  }
+
+  .product__description {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .product__size {
+    padding: 0;
+    font-size: 14px;
+    width: 70px;
+    height: 32px;
+  }
+
+  .product__size-active {
+    padding: 0;
+    font-size: 14px;
+    width: 70px;
+    height: 32px;
+  }
+
+  .product__addButton {
+    font-size: 15px;
+    padding: 15px 70px;
+  }
+}

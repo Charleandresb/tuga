@@ -1,0 +1,112 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 880px;
+  width: 100%;
+  background-color: white;
+  margin: 50px auto;
+  padding: 85px 0;
+  border-radius: 12px;
+  position: relative;
+  transition: all 200ms ease-out;
+}
+
+.profile__acount {
+  color: grey;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 8px;
+}
+
+.profile__name {
+  color: rgb(3, 119, 228);
+  font-size: 40px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.profile__lastnames {
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 25px;
+}
+
+.profile__email {
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.profile__logout {
+  position: absolute;
+  color: rgb(3, 133, 255);
+  width: 25px;
+  height: 25px;
+  top: 8%;
+  left: 94%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .profile {
+    max-width: 708px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .profile {
+    max-width: 508px;
+  }
+
+  .profile__logout {
+    left: 90%;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .profile {
+    max-width: 408px;
+  }
+
+  .profile__acount {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile__name {
+    font-size: 30px;
+  }
+
+  .profile__lastnames {
+    font-size: 12px;
+  }
+
+  .profile__email {
+    font-size: 15px;
+  }
+
+  .profile__logout {
+    left: 90%;
+  }
+}
+@media screen and (max-width: 423px) {
+  .profile {
+    max-width: 365px;
+  }
+
+  .profile__logout {
+    left: 87%;
+  }
+}
+@media screen and (max-width: 374px) {
+  .profile {
+    max-width: 310px;
+  }
+
+  .profile__logout {
+    left: 85%;
+  }
+}
