@@ -1,7 +1,6 @@
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import About from "../About/About";
 import SideBar from "../SideBar/SideBar";
 import Register from "../Register/Register";
 import SuccesRegister from "../HandleRegister/SuccesRegister";
@@ -11,7 +10,7 @@ import Profile from "../profile/Profile";
 import ProtectedRoute from "../../utils/ProtectedRoute";
 import ProductList from "../ProductList/ProductList";
 import ProductTypeList from "../ProductTypeList/ProductTypeList";
-import ProductDetail from "../ProductDetail/productDetail";
+import ProductDetail from "../ProductDetail/ProductDetail";
 import Cart from "../Cart/Cart";
 import Preloader from "../Preloader/Preloader";
 import Building from "../Building/Building";
