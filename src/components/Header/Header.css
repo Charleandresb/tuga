@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: 60px 1fr 1fr;
   align-items: center;
-  padding: 20px 50px;
-  background-color: black;
+  padding: 10px 50px;
+  background: black;
   column-gap: 20px;
   position: fixed;
   z-index: 3;
@@ -109,21 +109,38 @@
 }
 
 .header__bag-counter-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  top: -22%;
+  left: 62%;
+  background-color: red;
+  border-radius: 50px;
+  opacity: 0;
+  transition: all 200ms ease-out;
+}
+
+.header__bag-counter-container--up {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 18px;
-  height: 18px;
-  top: -36%;
-  left: 94%;
-  background-color: rgb(3, 133, 255);
+  width: 17px;
+  height: 17px;
+  top: -22%;
+  left: 62%;
+  background-color: red;
   border-radius: 50px;
+  opacity: 1;
 }
 
 .header__bag-counter {
   color: white;
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 989px) {

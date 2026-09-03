@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   height: auto;
-  padding: 0 20px;
+  padding: 140px 20px 100px;
 }
 
 .cards__title {
   color: black;
   font-weight: 500;
   font-size: 20px;
-  margin: 40px 0 0;
+  margin: 0;
 }
 
 .cards__grid {
@@ -38,10 +38,6 @@
 }
 
 @media screen and (max-width: 480px) {
-  .cards {
-    padding: 0 10px;
-  }
-
   .cards__grid {
     grid-template-columns: 157px 157px;
     row-gap: 10px;
@@ -55,7 +51,7 @@
 
 @media screen and (max-width: 340px) {
   .cards {
-    padding: 0;
+    padding: 140px 0 100px;
   }
 
   .cards__title {

@@ -2,6 +2,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import SideBar from "../SideBar/SideBar";
+import SideCart from "../SideCart/SideCart";
 import Register from "../Register/Register";
 import SuccesRegister from "../HandleRegister/SuccesRegister";
 import ErrorRegister from "../HandleRegister/ErrorRegister";
@@ -22,6 +23,7 @@ import { checkToken } from "../../utils/auth";
 
 export default function App() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [sideCartOpen, setSideCartOpen] = useState(false);
   const [succesRegisterOpen, setSuccesRegisterOpen] = useState(false);
   const [errorRegisterOpen, setErrorRegisterOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -53,14 +55,20 @@ export default function App() {
   }, [loggedIn, userName, navigate]);
 
   useEffect(() => {
+    if (sideBarOpen || sideCartOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => document.body.classList.remove("no-scroll");
+  }, [sideBarOpen, sideCartOpen]);
+
+  useEffect(() => {
     setTimeout(() => {
       setSpiner(false);
     }, 3000);
   }, []);
-
-  function handleSideBarClick() {
-    setSideBarOpen(true);
-  }
 
   function handleSuccesRegisterOpen() {
     setSuccesRegisterOpen(true);
@@ -85,6 +93,7 @@ export default function App() {
 
   function closeAllModals() {
     setSideBarOpen(false);
+    setSideCartOpen(false);
     setSuccesRegisterOpen(false);
     setErrorRegisterOpen(false);
   }
@@ -93,11 +102,13 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <CartProvider>
         <SideBar isOpen={sideBarOpen} onClose={closeAllModals} />
+        <SideCart isOpen={sideCartOpen} onClose={closeAllModals} />
         <div className="page">
           <Header
             userName={userName}
             loggedIn={loggedIn}
-            onSideBarClick={handleSideBarClick}
+            onSideBarClick={() => setSideBarOpen(true)}
+            onSideCartClick={() => setSideCartOpen(true)}
           />
 
           <main className="page__content">
@@ -128,7 +139,11 @@ export default function App() {
                 />
                 <Route
                   path="/comprar/:productSku"
-                  element={<ProductDetail />}
+                  element={
+                    <ProductDetail
+                      onSideCartClick={() => setSideCartOpen(true)}
+                    />
+                  }
                 />
                 <Route path="/carrito" element={<Cart />} />
                 <Route

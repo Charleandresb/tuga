@@ -5,12 +5,12 @@ import { cartContext } from "../../contexts/CartProvider";
 import api from "../../utils/api";
 import cloudinaryUrl from "../../utils/cloudinaryUrl";
 
-export default function ProductDetail() {
+export default function ProductDetail({ onSideCartClick }) {
   const [product, setProduct] = useState([]);
   const [variant, setVariant] = useState([]);
   const [variants, setVariants] = useState([]);
   const [spiner, setSpiner] = useState(true);
-  const { addToCart } = useContext(cartContext);
+  const { addToCart, cart } = useContext(cartContext);
   const { productSku } = useParams();
   const navigate = useNavigate();
 
@@ -27,6 +27,9 @@ export default function ProductDetail() {
     getProduct();
   }, [productSku]);
 
+  console.log(variant);
+  console.log(variants);
+
   function handleAddItem() {
     addToCart({
       sku: variant.sku,
@@ -38,10 +41,20 @@ export default function ProductDetail() {
       stock: variant.stock,
       quantity: 1,
     });
+
+    onSideCartClick();
   }
 
+  const cartItem = cart.find((item) => item.sku === variant.sku);
+
+  const quantityInCart = cartItem ? cartItem.quantity : 0;
+
+  const availableStock = variant.stock - quantityInCart;
+
   function handleSizeChange(newSku) {
-    navigate(`/comprar/${newSku}`);
+    navigate(`/comprar/${newSku}`, {
+      replace: true,
+    });
   }
 
   const price = variant
@@ -73,8 +86,9 @@ export default function ProductDetail() {
             </div>
             <h3 className="product__title">{product.name}</h3>
             <p className="product__description">{product.description}</p>
-            <p className="product__sku">SKU: {variant.sku}</p>
-            <p className="product__stock">Stock disponible: {variant.stock}</p>
+            <p className="product__sku">{variant.sku}</p>
+            <p className="product__showcase">En vitrina: {availableStock}</p>
+            <p className="product__in-cart">En carrito: {quantityInCart}</p>
             <p className="product__price">{price}</p>
             <div className="product__sizes">
               {variants.map((v) => (
@@ -85,15 +99,22 @@ export default function ProductDetail() {
                       ? "product__size-active"
                       : "product__size"
                   }
-                  disabled={v.stock === 0}
+                  disabled={v.stock <= 0}
                   onClick={() => handleSizeChange(v.sku)}
                 >
                   {v.size}
+                  {/* {v.stock === 0 && " Agotado"}
+                  {v.stock === 0 ? "Agotado" : v.size} */}
                 </button>
               ))}
             </div>
-            <button className="product__addButton" onClick={handleAddItem}>
-              Agregar al carro
+            <p className="product__stock">Stock disponible: {variant.stock}</p>
+            <button
+              className="product__addButton"
+              onClick={handleAddItem}
+              disabled={availableStock <= 0}
+            >
+              {variant.stock <= 0 ? "Agotado" : "Agregar al carrito"}
             </button>
           </div>
         </div>

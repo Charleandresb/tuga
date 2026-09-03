@@ -3,17 +3,19 @@ import Navigation from "../Navigation/Navigation";
 import { CircleUserRound, ShoppingCart, Search, Menu } from "lucide-react";
 import { cartContext } from "../../contexts/CartProvider";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useHeaderScroll } from "../../utils/useHeaderScroll";
 
-export default function Header({ userName, loggedIn, onSideBarClick }) {
+export default function Header({
+  userName,
+  loggedIn,
+  onSideBarClick,
+  onSideCartClick,
+}) {
   const { productCount } = useContext(cartContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const hidden = useHeaderScroll();
-
-  function handleOnLogoClick() {
-    navigate("/");
-  }
 
   function handleOnAcountClick() {
     if (loggedIn === true) {
@@ -23,8 +25,12 @@ export default function Header({ userName, loggedIn, onSideBarClick }) {
     }
   }
 
-  function handleOnBagClick() {
-    navigate("/carrito");
+  function handleSideCartClick() {
+    if (location.pathname === "/carrito") {
+      navigate("/carrito");
+    } else {
+      onSideCartClick();
+    }
   }
 
   return (
@@ -34,7 +40,7 @@ export default function Header({ userName, loggedIn, onSideBarClick }) {
         className="header__logo"
         src={Logo}
         alt="Logo"
-        onClick={handleOnLogoClick}
+        onClick={() => navigate("/")}
       />
       <div className="header__nav">
         <Navigation className="header__navigation" />
@@ -51,8 +57,14 @@ export default function Header({ userName, loggedIn, onSideBarClick }) {
           {loggedIn ? <p className="header__acount-name">{userName}</p> : null}
         </div>
         <div className="header__icon-bag">
-          <ShoppingCart className="header__bag" onClick={handleOnBagClick} />
-          <div className="header__bag-counter-container">
+          <ShoppingCart className="header__bag" onClick={handleSideCartClick} />
+          <div
+            className={
+              productCount <= 0
+                ? "header__bag-counter-container"
+                : "header__bag-counter-container--up"
+            }
+          >
             <span className="header__bag-counter">{productCount}</span>
           </div>
         </div>

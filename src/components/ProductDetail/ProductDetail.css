@@ -1,5 +1,5 @@
 .product {
-  padding: 50px 0 100px;
+  padding: 140px 0 100px;
   display: flex;
   justify-content: center;
 }
@@ -7,14 +7,16 @@
 .product__grid {
   display: grid;
   grid-template-columns: 450px 450px;
-  grid-auto-rows: 82px 55px 11px 38px 20px 30px 50px;
+  grid-auto-rows: 82px 55px 11px 15px 15px 20px 30px 15px 50px;
   grid-template-areas:
     "image title"
     "image description"
     "image sku"
-    "image stock"
+    "image showcase"
+    "image incart"
     "image price"
     "image sizes"
+    "image stock"
     "image addButton";
   gap: 25px 25px;
   background-color: white;
@@ -59,10 +61,26 @@
   margin: 0;
 }
 
+.product__showcase {
+  grid-area: showcase;
+  color: black;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.product__in-cart {
+  grid-area: incart;
+  color: black;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+}
+
 .product__stock {
   grid-area: stock;
   color: black;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   margin: 0;
 }
@@ -130,7 +148,7 @@
 
 @media screen and (max-width: 989px) {
   .product {
-    padding: 50px 0 100px;
+    padding: 140px 0 100px;
   }
 }
 
@@ -211,29 +229,52 @@
   .product__grid {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     gap: 15px;
   }
 
   .product__image-container {
-    width: 320px;
-    height: 320px;
+    width: 340px;
+    height: 340px;
   }
 
   .product__image {
-    width: 320px;
-    height: 320px;
+    width: 100%;
+    height: 100%;
   }
 
   .product__title {
     font-size: 19px;
-    text-align: center;
+    padding: 0 10px;
   }
 
   .product__description {
     font-size: 13px;
-    text-align: center;
+    padding: 0 10px;
+  }
+
+  .product__sku {
+    padding: 0 10px;
+  }
+
+  .product__showcase {
+    padding: 0 10px;
+  }
+
+  .product__in-cart {
+    padding: 0 10px;
+  }
+
+  .product__price {
+    padding: 0 10px;
+  }
+
+  .product__sizes {
+    padding: 0 10px;
+  }
+
+  .product__stock {
+    padding: 0 10px;
   }
 
   .product__size {
@@ -253,5 +294,18 @@
   .product__addButton {
     font-size: 15px;
     padding: 15px 70px;
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .product__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .product__image-container {
+    width: 100vw;
+    height: 100%;
   }
 }

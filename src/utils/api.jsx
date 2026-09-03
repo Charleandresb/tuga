@@ -54,6 +54,12 @@ class Api {
   productVariants(productId) {
     return this.makeFetch(`${this.baseUrl}/products/variants/${productId}`);
   }
+
+  syncCart(items) {
+    return this.makeFetch(`${this.baseUrl}/products/cart/validate`, "POST", {
+      items,
+    });
+  }
 }
 
 const api = new Api({

@@ -3,24 +3,21 @@ import arrow from "../../images/arrow.png";
 import SearchForm from "../SearchForm/SearchForm";
 import { Link } from "react-router-dom";
 
-export default function sidebar(props) {
+export default function sidebar({ isOpen, onClose }) {
   return (
-    <div className={`sidebar ${props.isOpen && "sidebar_open"}`}>
-      <img
-        className="sidebar__close-icon"
-        src={closeIcon}
-        onClick={props.onClose}
-      />
+    <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
+      <div className="sidebar__overlay" onClick={onClose}></div>
 
-      <div className="sidebar__menu-container">
+      <div className="sidebar__panel">
+        <img
+          className="sidebar__close-icon"
+          src={closeIcon}
+          onClick={onClose}
+        />
+
         <ul className="sidebar__menu">
           <li className="sidebar__list">
-            <Link
-              href="/"
-              to="/"
-              className="sidebar__link"
-              onClick={props.onClose}
-            >
+            <Link href="/" to="/" className="sidebar__link" onClick={onClose}>
               Inicio
             </Link>
           </li>
@@ -36,10 +33,10 @@ export default function sidebar(props) {
               <ul className="sidebar__submenu">
                 <li className="sidebar__li">
                   <Link
-                    href="productos/catalogo"
+                    href="#"
                     to="/productos/catalogo"
                     className="sidebar__sublink"
-                    onClick={props.onClose}
+                    onClick={onClose}
                   >
                     Ver todo
                   </Link>
@@ -47,10 +44,10 @@ export default function sidebar(props) {
 
                 <li className="sidebar__li">
                   <Link
-                    href="productos/cuadernos"
-                    to="/productos/cuadernos"
+                    href="productos/gorros"
+                    to="/productos/gorros"
                     className="sidebar__sublink"
-                    onClick={props.onClose}
+                    onClick={onClose}
                   >
                     Gorros
                   </Link>
@@ -61,7 +58,7 @@ export default function sidebar(props) {
                     href="productos/mitones"
                     to="/productos/mitones"
                     className="sidebar__sublink"
-                    onClick={props.onClose}
+                    onClick={onClose}
                   >
                     Mitones
                   </Link>
@@ -72,7 +69,7 @@ export default function sidebar(props) {
                     href="productos/gorro-y-mitones"
                     to="/productos/gorro-y-mitones"
                     className="sidebar__sublink"
-                    onClick={props.onClose}
+                    onClick={onClose}
                   >
                     Gorro y mitones
                   </Link>
@@ -80,10 +77,10 @@ export default function sidebar(props) {
 
                 <li className="sidebar__li">
                   <Link
-                    href="productos/estuches"
-                    to="/productos/estuches"
+                    href="productos/polerones"
+                    to="/productos/polerones"
                     className="sidebar__sublink"
-                    onClick={props.onClose}
+                    onClick={onClose}
                   >
                     Polerones
                   </Link>
@@ -94,7 +91,7 @@ export default function sidebar(props) {
                     href="productos/poleras"
                     to="/productos/poleras"
                     className="sidebar__sublink"
-                    onClick={props.onClose}
+                    onClick={onClose}
                   >
                     Poleras
                   </Link>
@@ -108,7 +105,7 @@ export default function sidebar(props) {
               href="https://www.instagram.com/tuganativewear/"
               target="blank"
               className="sidebar__link"
-              onClick={props.onClose}
+              onClick={onClose}
             >
               Instagram
             </a>

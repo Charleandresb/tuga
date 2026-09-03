@@ -1,30 +1,33 @@
 import { useContext } from "react";
 import { cartContext } from "../../contexts/CartProvider";
-import { ShoppingCart } from "lucide-react";
-import { Trash2 } from "lucide-react";
+import { ShoppingCart, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import cloudinaryUrl from "../../utils/cloudinaryUrl";
+import CartItems from "../CartItems/CartItems";
 
 function Cart() {
-  const {
-    cart,
-    productCount,
-    totalPrice,
-    addProductQuantity,
-    removeProductQuantity,
-    removeFromCart,
-    clearCart,
-  } = useContext(cartContext);
-
+  const { cart, productCount, totalPrice } = useContext(cartContext);
   const navigate = useNavigate();
 
-  function handleBuy() {
-    navigate("/página-en-desarrollo");
-  }
+  const policy = [
+    {
+      title: "ENVÍOS",
+      text: "Revisa nuestra información de envíos, como tiempos de entrega y despachos",
+      link: "aquí",
+    },
+    {
+      title: "CAMBIOS",
+      text: "Cuentas con 60 días para realizar cambios desde que recibes tu pedido",
+      link: "Política de Cambios",
+    },
+    {
+      title: "AYUDA",
+      text: "Contáctanos para más información",
+      link: "aquí",
+    },
+  ];
 
-  function handleImageClick(sku) {
-    navigate(`/comprar/${sku}`);
-  }
+  console.log(cart);
 
   const total = new Intl.NumberFormat("es-CL", {
     style: "currency",
@@ -39,76 +42,33 @@ function Cart() {
       </div>
     );
   return (
-    <section className="cart">
+    <div className="cart">
       <div className="cart__container">
-        <div className="cart__header">
-          <div className="cart__count">
-            <ShoppingCart className="cart__count-icon" />
-            <h5 className="cart__count-text">
-              Total de productos: {productCount}
-            </h5>
-          </div>
-          <div className="cart__header-titles">
-            <p className="cart__product">Producto</p>
-            <p className="cart__name">Nombre</p>
-            <p className="cart__price">Precio</p>
-            <p className="cart__quantity">Cantidad</p>
-          </div>
+        <h5 className="cart__count-text">Total de Productos: {productCount}</h5>
+        <CartItems />
+      </div>
+      <div className="cart__subtotal">
+        <div className="cart__subtotal-cont">
+          <h3 className="cart__subtotal-text">S U B T O T A L</h3>
+          <p className="cart__subtotal-price">{total}</p>
         </div>
-        {cart.map((item) => {
-          return (
-            <div key={item.sku} className="cart__product-grid">
-              <img
-                src={cloudinaryUrl(item.images, 150)}
-                className="cart__grid-image"
-                alt={item.name}
-                onClick={() => handleImageClick(item.sku)}
-              />
-              <p className="cart__grid-name">
-                {item.name} ({item.size})
-              </p>
-              <p className="cart__grid-price">
-                {new Intl.NumberFormat("es-Cl", {
-                  style: "currency",
-                  currency: "CLP",
-                }).format(item.price)}
-              </p>
-              <p className="cart__grid-quantity">{item.quantity}</p>
-              <div className="cart__grid-buttons">
-                <p
-                  className="cart__remove-button"
-                  onClick={() => removeProductQuantity(item.sku)}
-                >
-                  –
-                </p>
-                <p
-                  className="cart__add-button"
-                  onClick={() => addProductQuantity(item.sku)}
-                >
-                  +
-                </p>
-                <Trash2
-                  className="cart__empty-button"
-                  onClick={() => removeFromCart(item.sku)}
-                />
-              </div>
+        <button
+          className="cart__pay-button"
+          onClick={() => navigate("/página-en-desarrollo")}
+        >
+          FINALIZAR COMPRA
+        </button>
+        <div className="cart__policy">
+          {policy.map((item) => (
+            <div key={item.title} className="cart__policy-cont">
+              <h3 className="cart__policy-title">{item.title}</h3>
+              <p className="cart__policy-text">{item.text}</p>
+              <p className="cart__policy-link">{item.link}</p>
             </div>
-          );
-        })}
-
-        <div className="cart__total">
-          <h3 className="cart__total-text">Total: {total}</h3>
-        </div>
-        <div className="cart__button-container">
-          <button className="cart__clear-button" onClick={() => clearCart()}>
-            Vaciar carrito
-          </button>
-          <button className="cart__pay-button" onClick={handleBuy}>
-            Proceder al pago
-          </button>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

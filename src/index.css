@@ -14,6 +14,8 @@
 
 @import url(./components/SideBar/SideBar.css);
 
+@import url(./components/SideCart/SideCart.css);
+
 @import url(./components/SearchForm/SearchForm.css);
 
 @import url(./components/Form/Form.css);
@@ -27,6 +29,8 @@
 @import url(./components/ProductDetail/ProductDetail.css);
 
 @import url(./components/Cart/Cart.css);
+
+@import url(./components/CartItems/CartItems.css);
 
 @import url(./components/InfoTooltip/InfoTooltip.css);
 

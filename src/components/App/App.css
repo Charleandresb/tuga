@@ -2,6 +2,14 @@ body {
   background-color: white;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -16,13 +24,21 @@ body {
   justify-content: center; */
 }
 
-.page__content {
+/* .page__content {
   flex: 1;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 @media screen and (max-width: 989px) {
   .page__content {
     padding-top: 80px;
   }
+} */
+
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed; /* Muestra un cursor de prohibición */
+  opacity: 0.6;
+  pointer-events: none;
 }
